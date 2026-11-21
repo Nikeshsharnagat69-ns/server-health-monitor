@@ -1,11 +1,16 @@
 
 import psutil
+import platform
 
 print("===== SERVER HEALTH MONITOR =====")
 
 cpu = psutil.cpu_percent(interval=1)
 ram = psutil.virtual_memory().percent
-disk = psutil.disk_usage("C:\\").percent
+
+if platform.system() == "Windows":
+    disk = psutil.disk_usage("C:\\").percent
+else:
+    disk = psutil.disk_usage("/").percent
 
 print("CPU Usage:", cpu, "%")
 print("RAM Usage:", ram, "%")
