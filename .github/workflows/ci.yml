@@ -20,8 +20,11 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install psutil
-        run: pip install psutil
+      - name: Install Dependencies
+        run: pip install psutil pytest
 
       - name: Run Health Monitor
         run: python monitor.py
+
+      - name: Run Automatic Tests
+        run: python -m pytest test_monitor.py -v
